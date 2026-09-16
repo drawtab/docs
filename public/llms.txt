@@ -2,7 +2,7 @@
 
 > Official developer documentation for the Drawtab REST API — generate dynamic images and graphics on demand from structured data.
 
-Drawtab renders high-resolution graphics (event passes, certificates, social cards, review graphics, product badges) from a JSON payload in roughly 250ms, using native Google Skia bindings — no headless browser involved. This site documents the public REST API.
+Drawtab renders high-resolution graphics (event passes, certificates, social cards, review graphics, product badges) from a JSON payload using native Google Skia bindings — no headless browser involved. This site documents the public REST API.
 
 **Base URL**: `https://core.drawtab.app/api/v1`
 **Authentication**: `Authorization: Bearer dt_live_...` (API keys generated at https://workspace.drawtab.app/dashboard/developers)
@@ -37,6 +37,8 @@ Accepts either an engine-native payload (`{canvas, layers}`) or a saved template
 - Rate limit is **60 requests/minute per API key**, returning `429` with a `Retry-After` header.
 - The raw API key is shown exactly once at creation; only its SHA-256 hash is stored server-side and it can never be retrieved again.
 - Admin-granted (gifted) credits are spent before subscription or top-up credits.
+- Every plan renders clean output with no watermark.
+- Automated pipelines (including one-click Google Sheets, Airtable, Eventbrite and Typeform connections) are configured in the workspace, not through this API — see https://drawtab.app/integrations.
 
 ## Related Domains
 
@@ -46,3 +48,4 @@ Accepts either an engine-native payload (`{canvas, layers}`) or a saved template
 - **Rendering engine health**: https://engine.drawtab.app/health
 - **Status page**: https://status.drawtab.app
 - **Extended machine-readable spec**: https://drawtab.app/llms-full.txt
+- **Privacy Policy & Terms**: https://drawtab.app/policy
