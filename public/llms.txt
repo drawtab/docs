@@ -38,7 +38,7 @@ Accepts either an engine-native payload (`{canvas, layers}`) or a saved template
 - The raw API key is shown exactly once at creation; only its SHA-256 hash is stored server-side and it can never be retrieved again.
 - Admin-granted (gifted) credits are spent before subscription or top-up credits.
 - Every plan renders clean output with no watermark.
-- Automated pipelines (including one-click Google Sheets, Airtable, Eventbrite and Typeform connections) are configured in the workspace, not through this API — see https://drawtab.app/integrations.
+- Automated pipelines (including one-click Google Sheets, Airtable, Eventbrite, Meetup and Typeform connections) are configured in the workspace, not through this API — see https://drawtab.app/integrations.
 
 ## Related Domains
 
