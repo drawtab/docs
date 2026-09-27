@@ -4,6 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { inter, bricolage } from './fonts'
+import { PostHogProvider } from './components/analytics/PostHogProvider'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
@@ -48,16 +49,18 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="en" dir="ltr" suppressHydrationWarning className={`${inter.variable} ${bricolage.variable}`}>
       <Head />
       <body>
-        <Layout
-          navbar={navbar}
-          pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/drawtab/drawtab-docs"
-          editLink="Edit this page on GitHub"
-          sidebar={{ defaultMenuCollapseLevel: 1 }}
-          footer={footer}
-        >
-          {children}
-        </Layout>
+        <PostHogProvider>
+          <Layout
+            navbar={navbar}
+            pageMap={await getPageMap()}
+            docsRepositoryBase="https://github.com/drawtab/drawtab-docs"
+            editLink="Edit this page on GitHub"
+            sidebar={{ defaultMenuCollapseLevel: 1 }}
+            footer={footer}
+          >
+            {children}
+          </Layout>
+        </PostHogProvider>
       </body>
     </html>
   )
