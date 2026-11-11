@@ -44,7 +44,7 @@
 
 /* Small blue text (links, active sidebar item) uses the darker blue for
    contrast on the paper background; fills keep the brighter brand blue. */
-html:not(.dark) .x\:text-primary-600 {
+.x\:text-primary-600 {
   color: var(--x-color-primary-700);
 }
 
@@ -65,10 +65,6 @@ h6 {
    light background. In dark mode, force it to solid white instead of
    swapping in a second asset — brightness(0) collapses every opaque pixel
    to black (alpha untouched), then invert(1) flips that to white. */
-.dark .site-logo {
-  filter: brightness(0) invert(1);
-}
-
 /* Title + description link cards, used on the Introduction page.
    Nextra's built-in <Cards.Card> is designed for an image/icon "cover" (its
    children render unpadded, above a separately-padded title bar) rather than
@@ -110,23 +106,6 @@ h6 {
   font-size: 0.875rem;
   line-height: 1.4;
   color: var(--brand-muted);
-}
-
-.dark .doc-card {
-  border-color: #264038;
-  background: #19302a;
-}
-
-.dark .doc-card:hover {
-  border-color: #35524a;
-}
-
-.dark .doc-card-title {
-  color: #f5f3ee;
-}
-
-.dark .doc-card-description {
-  color: #96968c;
 }
 
 /* 404 page — matches the same illustration/typography/button treatment used
@@ -210,26 +189,6 @@ h6 {
   background: #f8f6f2;
 }
 
-.dark .notfound-heading,
-.dark .notfound-subheading {
-  color: #f5f3ee;
-}
-
-.dark .notfound-text {
-  color: #96968c;
-}
-
-.dark .notfound-btn-secondary {
-  background: transparent;
-  color: #cbc7ba;
-  border-color: #264038;
-}
-
-.dark .notfound-btn-secondary:hover {
-  border-color: #35524a;
-  background: #19302a;
-}
-
 @keyframes notfound-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -255,11 +214,6 @@ h6 {
   background: #e3ebfa;
   color: #233c78;
 }
-.dark ::selection {
-  background: #274896;
-  color: #fff;
-}
-
 /* Navbar */
 .nav-link {
   font-size: 0.875rem;
@@ -270,12 +224,6 @@ h6 {
 }
 .nav-link:hover {
   color: var(--brand-ink);
-}
-.dark .nav-link {
-  color: #cbc7ba;
-}
-.dark .nav-link:hover {
-  color: #f5f3ee;
 }
 .nav-cta {
   display: inline-flex;
@@ -399,36 +347,6 @@ h6 {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   white-space: pre;
 }
-.dark .docs-hero {
-  background-color: #19302a;
-  background-image: radial-gradient(#264038 1px, transparent 1px);
-  border-color: #264038;
-}
-.dark .docs-hero::after {
-  background: linear-gradient(90deg, #19302a 25%, rgb(25 48 42 / 0.55) 100%);
-}
-.dark .docs-eyebrow {
-  color: #a2bcf1;
-}
-.dark .docs-hero-title {
-  color: #f5f3ee;
-}
-.dark .docs-hero-lede {
-  color: #cbc7ba;
-}
-.dark .docs-btn-secondary {
-  background: transparent;
-  border-color: #35524a;
-  color: #cbc7ba !important;
-}
-.dark .docs-btn-secondary:hover {
-  background: #19302a;
-  border-color: #4a6d63;
-}
-.dark .docs-hero-code {
-  background: #0f1d19;
-}
-
 /* Cards: lift on hover, arrow nudge, like the drawtab.app cards */
 .doc-card {
   box-shadow: 0 1px 1px rgb(22 25 29 / 0.03);
@@ -475,9 +393,6 @@ h6 {
   text-transform: uppercase;
   color: var(--brand-ink);
 }
-.dark .docs-footer h4 {
-  color: #f5f3ee;
-}
 .docs-footer ul {
   list-style: none;
   margin: 0;
@@ -492,18 +407,12 @@ h6 {
 .docs-footer a:hover {
   color: var(--brand-primary-dark);
 }
-.dark .docs-footer a:hover {
-  color: #a2bcf1;
-}
 .docs-footer-legal {
   margin: 2rem 0 0;
   padding-top: 1.25rem;
   border-top: 1px solid var(--brand-border);
   font-size: 0.75rem;
   line-height: 1.6;
-}
-.dark .docs-footer-legal {
-  border-color: #264038;
 }
 @media (max-width: 767px) {
   .docs-footer-grid {
@@ -512,4 +421,19 @@ h6 {
   .docs-footer-brand {
     grid-column: 1 / -1;
   }
+}
+
+/* ─── Code theme ──────────────────────────────────────────────────
+   The page is always light. The theme switcher only flips code blocks:
+   it sets `code-dark` on <html> (see components/CodeTheme.tsx). */
+html.code-dark pre {
+  background-color: #0f1d19 !important;
+  color: #e7e5de;
+}
+html.code-dark pre code span {
+  color: var(--shiki-dark, inherit) !important;
+  background-color: transparent !important;
+}
+html.code-dark pre code {
+  color: #e7e5de;
 }

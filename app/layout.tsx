@@ -4,6 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { inter, bricolage } from './fonts'
+import { CODE_THEME_INIT, CodeTheme } from './components/CodeTheme'
 import { DocsFooter } from './components/DocsFooter'
 import { PostHogProvider } from './components/analytics/PostHogProvider'
 import 'nextra-theme-docs/style.css'
@@ -48,13 +49,14 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang="en" dir="ltr" suppressHydrationWarning className={`${inter.variable} ${bricolage.variable}`}>
       <Head
         color={{
-          hue: { light: 222, dark: 222 },
-          saturation: { light: 72, dark: 80 },
-          lightness: { light: 56, dark: 66 },
+          hue: 222,
+          saturation: 72,
+          lightness: 56,
         }}
-        backgroundColor={{ light: '#f5f3ee', dark: '#13251f' }}
+        backgroundColor={{ light: '#f5f3ee', dark: '#f5f3ee' }}
       />
       <body>
+        <script dangerouslySetInnerHTML={{ __html: CODE_THEME_INIT }} />
         <PostHogProvider>
           <Layout
             navbar={navbar}
@@ -67,8 +69,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             }}
             sidebar={{ defaultMenuCollapseLevel: 1 }}
             footer={footer}
-            nextThemes={{ defaultTheme: 'light' }}
+            nextThemes={{ defaultTheme: 'light', forcedTheme: 'light' }}
+            themeSwitch={{ light: 'Light code', dark: 'Dark code', system: 'System code' }}
           >
+            <CodeTheme />
             {children}
           </Layout>
         </PostHogProvider>
