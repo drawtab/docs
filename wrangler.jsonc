@@ -1,0 +1,24 @@
+{
+  // Cloudflare Worker config for the Drawtab docs site (Next.js + Nextra via OpenNext).
+  // "name" must match the Worker's name in the Cloudflare dashboard.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "docs",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-11-01",
+  // nodejs_compat is required by OpenNext (Next.js server runtime on Workers).
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // Lets the Worker call itself; must point at this Worker's own name.
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "docs"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

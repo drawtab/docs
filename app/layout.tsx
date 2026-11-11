@@ -4,6 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import type { ReactNode } from 'react'
 import Image from 'next/image'
 import { inter, bricolage } from './fonts'
+import { DocsFooter } from './components/DocsFooter'
 import { PostHogProvider } from './components/analytics/PostHogProvider'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
@@ -26,21 +27,19 @@ const navbar = (
       <Image src="/logo.svg" alt="Drawtab" width={135} height={30} priority className="site-logo" />
     }
     logoLink="/"
-  />
+  >
+    <a className="nav-link" href="https://drawtab.app" target="_blank" rel="noreferrer">
+      drawtab.app
+    </a>
+    <a className="nav-cta" href="https://workspace.drawtab.app" target="_blank" rel="noreferrer">
+      Dashboard
+    </a>
+  </Navbar>
 )
 
 const footer = (
   <Footer>
-    <span>
-      © 2026 Drawtab by Digisept LTD ·{' '}
-      <a href="https://drawtab.app" target="_blank" rel="noreferrer">
-        drawtab.app
-      </a>{' '}
-      ·{' '}
-      <a href="https://workspace.drawtab.app" target="_blank" rel="noreferrer">
-        Dashboard
-      </a>
-    </span>
+    <DocsFooter />
   </Footer>
 )
 
@@ -60,8 +59,12 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <Layout
             navbar={navbar}
             pageMap={await getPageMap()}
-            docsRepositoryBase="https://github.com/drawtab/drawtab-docs"
-            editLink="Edit this page on GitHub"
+            editLink={null}
+            copyPageButton={false}
+            feedback={{
+              content: 'Question or feedback? Email us',
+              link: 'mailto:hello@drawtab.app?subject=Drawtab%20docs%20feedback',
+            }}
             sidebar={{ defaultMenuCollapseLevel: 1 }}
             footer={footer}
             nextThemes={{ defaultTheme: 'light' }}
