@@ -1,5 +1,51 @@
+/* Drawtab palette, mapped onto Nextra's theme variables.
+   Brand blue, paper background (set in layout.tsx via <Head>) and warm stone
+   neutrals match drawtab.app and workspace.drawtab.app.
+   primary-600 = #3f6fe0 (fills, large text), primary-700 = #2f5ac4 (small text). */
 :root {
-  --x-color-primary-600: 37 99 235; /* #2563eb — matches Drawtab's brand primary */
+  --brand-primary: #3f6fe0;
+  --brand-primary-dark: #2f5ac4;
+  --brand-primary-soft: #a2bcf1;
+  --brand-ink: #16191d;
+  --brand-body: #424644;
+  --brand-muted: #6b6e6a;
+  --brand-border: #dfdcd2;
+  --brand-card: #fdfcf9;
+
+  /* Warm stones in place of Nextra's cold blue-greys (light mode) */
+  --x-color-gray-50: #f8f6f2;
+  --x-color-gray-100: #ece9e1;
+  --x-color-gray-200: #dfdcd2;
+  --x-color-gray-300: #cbc7ba;
+  --x-color-gray-400: #96968c;
+  --x-color-gray-600: #5a5e5c;
+  --x-color-gray-700: #424644;
+  --x-color-gray-800: #2a2e2d;
+  --x-color-gray-900: #16191d;
+
+  /* Headings and body text use Nextra's slate; map it to ink and stones too */
+  --x-color-slate-50: #f8f6f2;
+  --x-color-slate-100: #ece9e1;
+  --x-color-slate-200: #dfdcd2;
+  --x-color-slate-700: #424644;
+  --x-color-slate-900: #16191d;
+
+  /* Same stones for dark mode */
+  --x-color-neutral-50: #f8f6f2;
+  --x-color-neutral-200: #dfdcd2;
+  --x-color-neutral-300: #cbc7ba;
+  --x-color-neutral-400: #96968c;
+  --x-color-neutral-500: #6b6e6a;
+  --x-color-neutral-600: #5a5e5c;
+  --x-color-neutral-700: #35524a;
+  --x-color-neutral-800: #264038;
+  --x-color-neutral-900: #0f1d19;
+}
+
+/* Small blue text (links, active sidebar item) uses the darker blue for
+   contrast on the paper background; fills keep the brighter brand blue. */
+html:not(.dark) .x\:text-primary-600 {
+  color: var(--x-color-primary-700);
 }
 
 body {
@@ -40,21 +86,22 @@ h6 {
   display: block;
   padding: 1rem 1.25rem;
   border-radius: 0.75rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--brand-border);
   text-decoration: none;
   color: inherit;
+  background: var(--brand-card);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .doc-card:hover {
-  border-color: #94a3b8;
+  border-color: var(--brand-primary-soft);
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
 }
 
 .doc-card-title {
   display: block;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--brand-ink);
   margin-bottom: 0.25rem;
 }
 
@@ -62,30 +109,30 @@ h6 {
   display: block;
   font-size: 0.875rem;
   line-height: 1.4;
-  color: #64748b;
+  color: var(--brand-muted);
 }
 
 .dark .doc-card {
-  border-color: #27272a;
+  border-color: #264038;
+  background: #19302a;
 }
 
 .dark .doc-card:hover {
-  border-color: #52525b;
+  border-color: #35524a;
 }
 
 .dark .doc-card-title {
-  color: #f4f4f5;
+  color: #f5f3ee;
 }
 
 .dark .doc-card-description {
-  color: #a1a1aa;
+  color: #96968c;
 }
 
 /* 404 page — matches the same illustration/typography/button treatment used
    across drawtab.app, workspace.drawtab.app, and the ops console. This site
    has no Tailwind config of its own (Nextra ships its own scoped utility
-   set), so these are plain hex values pulled from the shared brand palette
-   rather than primary- / secondary- utility classes. */
+   set), so these are the shared brand palette as CSS variables. */
 .notfound-wrap {
   display: flex;
   flex-direction: column;
@@ -100,24 +147,24 @@ h6 {
   font-size: 3.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #0f172a;
+  color: var(--brand-ink);
   margin: 0;
 }
 
 .notfound-heading span {
-  color: #2563eb;
+  color: var(--brand-primary);
 }
 
 .notfound-subheading {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--brand-ink);
   margin: 0.5rem 0 0;
 }
 
 .notfound-text {
   font-size: 0.9375rem;
-  color: #64748b;
+  color: var(--brand-muted);
   line-height: 1.6;
   margin: 0.75rem 0 0;
 }
@@ -144,43 +191,43 @@ h6 {
 }
 
 .notfound-btn-primary {
-  background: #2563eb;
+  background: var(--brand-primary);
   color: #fff;
 }
 
 .notfound-btn-primary:hover {
-  background: #1d4ed8;
+  background: var(--brand-primary-dark);
 }
 
 .notfound-btn-secondary {
-  background: #fff;
-  color: #334155;
-  border: 1px solid #e2e8f0;
+  background: var(--brand-card);
+  color: var(--brand-body);
+  border: 1px solid var(--brand-border);
 }
 
 .notfound-btn-secondary:hover {
-  border-color: #cbd5e1;
-  background: #f8fafc;
+  border-color: #cbc7ba;
+  background: #f8f6f2;
 }
 
 .dark .notfound-heading,
 .dark .notfound-subheading {
-  color: #f1f5f9;
+  color: #f5f3ee;
 }
 
 .dark .notfound-text {
-  color: #94a3b8;
+  color: #96968c;
 }
 
 .dark .notfound-btn-secondary {
   background: transparent;
-  color: #cbd5e1;
-  border-color: #334155;
+  color: #cbc7ba;
+  border-color: #264038;
 }
 
 .dark .notfound-btn-secondary:hover {
-  border-color: #475569;
-  background: #1e293b;
+  border-color: #35524a;
+  background: #19302a;
 }
 
 @keyframes notfound-spin {

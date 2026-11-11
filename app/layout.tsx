@@ -47,7 +47,14 @@ const footer = (
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning className={`${inter.variable} ${bricolage.variable}`}>
-      <Head />
+      <Head
+        color={{
+          hue: { light: 222, dark: 222 },
+          saturation: { light: 72, dark: 80 },
+          lightness: { light: 56, dark: 66 },
+        }}
+        backgroundColor={{ light: '#f5f3ee', dark: '#13251f' }}
+      />
       <body>
         <PostHogProvider>
           <Layout
@@ -57,6 +64,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             editLink="Edit this page on GitHub"
             sidebar={{ defaultMenuCollapseLevel: 1 }}
             footer={footer}
+            nextThemes={{ defaultTheme: 'light' }}
           >
             {children}
           </Layout>
