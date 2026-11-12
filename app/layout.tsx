@@ -10,15 +10,36 @@ import { PostHogProvider } from './components/analytics/PostHogProvider'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
+const DOCS_URL = 'https://docs.drawtab.app'
+const DOCS_DESCRIPTION =
+  'Official Drawtab API documentation: authenticate, render images from templates or a custom canvas, and handle webhooks, credits and rate limits.'
+
 export const metadata = {
+  metadataBase: new URL(DOCS_URL),
   title: {
-    default: 'Drawtab Docs',
-    template: '%s — Drawtab Docs',
+    default: 'Drawtab API Docs',
+    template: '%s | Drawtab Docs',
   },
-  description:
-    'Official API documentation for Drawtab — generate dynamic images and graphics on demand via a simple REST API.',
+  description: DOCS_DESCRIPTION,
+  // Each page is its own canonical URL; "./" resolves against the current path.
+  alternates: { canonical: './' },
   icons: {
     icon: '/favicon.svg',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'Drawtab Docs',
+    locale: 'en_US',
+    title: 'Drawtab API Docs',
+    description: DOCS_DESCRIPTION,
+    images: [{ url: '/og/docs.png', width: 1200, height: 630, alt: 'Drawtab API docs', type: 'image/png' }],
+  },
+  twitter: {
+    card: 'summary_large_image' as const,
+    site: '@usedrawtab',
+    title: 'Drawtab API Docs',
+    description: DOCS_DESCRIPTION,
+    images: [{ url: '/og/docs.png', alt: 'Drawtab API docs' }],
   },
 }
 
